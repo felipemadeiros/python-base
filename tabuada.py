@@ -12,4 +12,4 @@ for numero in numeros:
     print("Tabuada do:", numero)
     for n in numeros:
         print(numero * n)
-    print("---------------")
+    print("-" * 12)
