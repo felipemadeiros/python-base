@@ -8,8 +8,10 @@ __author__ = "Felipe Madeiros"
 numeros = list(range(1, 11))
 
 # Iterable (percorriveis)
-for numero in numeros:
-    print("Tabuada do:", numero)
-    for n in numeros:
-        print(numero * n)
-    print("-" * 12)
+for n1 in numeros:
+    print("\n{:-^18}".format(f"Tabuada do {n1}"))
+    for n2 in numeros:
+        resultado = n1 * n2
+        operacao = f"{n1} x {n2} = {resultado}"
+        print("{:^18}".format(operacao))
+    print("#" * 18)
