@@ -31,7 +31,7 @@ arguments = {
 for arg in sys.argv[1:]:
     #TODO: Tratar ValueError
     key, value = arg.split("=")
-    key = key.lstrip("-").strip() # remove o caracter '-' do comeco e espacos em branco do comeco e fim.
+    key = key.lstrip("-").strip() # remover o caracter '-' do comeco e espacos em branco do comeco e fim.
     value = value.strip()
 
     if key not in arguments:
