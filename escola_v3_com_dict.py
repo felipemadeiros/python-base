@@ -9,28 +9,24 @@ cada uma das atividades.
 __version__ = "0.0.1"
 
 # Dados
-sala1 = ["Erik", "Maia", "Gustavo", "Manuel", "Sofia", "Joana"]
-sala2 = ["Joao", "Antonio", "Carlos", "Maria", "Isolda"]
-
-aula_ingles = ["Erik", "Maia", "Joana", "Carlos", "Antonio"]
-aula_musica = ["Erik", "Carlos", "Maria"]
-aula_danca = ["Gustavo", "Sofia", "Joana", "Antonio"]
-
-# Dict alunos em cada atividade
-atividades = {
-    "ingles": aula_ingles,
-    "musica": aula_musica,
-    "danca": aula_danca
+salas = {
+    "1": ["Erik", "Maia", "Gustavo", "Manuel", "Sofia", "Joana"],
+    "2": ["Joao", "Antonio", "Carlos", "Maria", "Isolda"]
 }
 
-for nome_atividade, atividade in atividades:
-    print(f"Alunos da atividade {nome_atividade}\n")
+aulas = {
+    "ingles": ["Erik", "Maia", "Joana", "Carlos", "Antonio"],
+    "musica": ["Erik", "Carlos", "Maria"],
+    "danca": ["Gustavo", "Sofia", "Joana", "Antonio"]
+}
 
-    # sala1 que tem interseção com a atividade ( & é igual a intersection )
-    atividade_sala1 = set(sala1) & set(atividade)
-    atividade_sala2 = set(sala2).intersection(set(atividade))
+for key in aulas.keys():
+    alunos = {}
+    print(f"Alunos da aula de {key}\n")
 
-    print("Sala 1", atividade_sala1)
-    print("Sala 2", atividade_sala2)
+    for i in salas.keys():
+        alunos[i] = set(salas[i]) & set(aulas[key])
+        print(f"Sala {i}", alunos[i])
+
     print("-" * 20)
     print()
