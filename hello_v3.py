@@ -29,8 +29,15 @@ arguments = {
 }
 
 for arg in sys.argv[1:]:
-    #TODO: Tratar ValueError
-    key, value = arg.split("=")
+    # EAFP
+    try:
+        key, value = arg.split("=")
+    except ValueError as error:
+        # TODO: Logging
+        print(f"[Error] {error}")
+        print("You need to use `=`")
+        sys.exit(1)
+
     key = key.lstrip("-").strip() # remover o caracter '-' do comeco e espacos em branco do comeco e fim.
     value = value.strip()
 
@@ -57,4 +64,14 @@ msg = {
     "fr_FR": "Bonjour Monde"
 }
 
-print(msg[current_language])
+# EAFP
+try:
+    message = msg[current_language]
+except KeyError as error:
+    print(f"[Error] {error} invalid language")
+    print(f"Choose one valid option: {list(msg.keys())}")
+    sys.exit(1)
+
+print(
+    message * int(arguments["count"])
+)

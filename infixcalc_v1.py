@@ -82,7 +82,12 @@ filepath = os.path.join(path, "ifixcalc.log")
 timestamp = datetime.now().isoformat()
 user = os.getenv('USER', 'anonymous')
 
-with open(filepath, "a") as file_:
-    file_.write(f"{timestamp} - {user} - {arguments[0]}, {validated_nums[0]}, {validated_nums[1]} = {result}\n")
+try:
+    with open(filepath, "a") as file_:
+        file_.write(f"{timestamp} - {user} - {arguments[0]}, {validated_nums[0]}, {validated_nums[1]} = {result}\n")
+except PermissionError as error:
+    # TODO: logging
+    print(error)
+    sys.exit(1)
 
 print(f"O resultado é {result}")
