@@ -32,7 +32,21 @@ __license__ = "unlicense"
 
 import os
 import sys
+import logging
+from logging import handlers
 from datetime import datetime
+
+log_level =  os.getenv("LOG_LEVEL", "WARNING").upper()
+log = logging.Logger("logs.py", log_level)
+fh = handlers.RotatingFileHandler(
+    "logs/ifixcalc.log", 
+    maxBytes=10**6,   # tamanho maximo do arquivo de logs, pode usar 10**6 = 1MB
+    backupCount=10) # quantidade de arquivos de logs que serao mantidos
+fh.setLevel(log_level)
+fmt = logging.Formatter('%(asctime)s %(name)s %(levelname)s l:%(lineno)d f:%(filename)s: %(message)s')
+fh.setFormatter(fmt)
+log.addHandler(fh)
+
 
 arguments = sys.argv[1:]
 
@@ -86,8 +100,7 @@ try:
     with open(filepath, "a") as file_:
         file_.write(f"{timestamp} - {user} - {arguments[0]}, {validated_nums[0]}, {validated_nums[1]} = {result}\n")
 except PermissionError as error:
-    # TODO: logging
-    print(error)
+    log.error("Permission denied: %s", str(error))
     sys.exit(1)
 
 print(f"O resultado é {result}")
