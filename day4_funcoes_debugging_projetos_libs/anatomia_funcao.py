@@ -78,7 +78,7 @@ print(resto)
 
 #####################################
 
-def nome_da_funcao4(n1, n2):
+def soma(n1, n2):
     """Faz a soma de 2 numeros"""
     return n1 + n2
 
