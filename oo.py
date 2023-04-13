@@ -12,12 +12,13 @@ people = [
 ]
 
 def add_points(person, value):
-    if person["role"] == "manager":
-        value *= 2
-    person["balance"] += value
-    return person
+    data = person.copy()
+    if data["role"] == "manager":
+        data *= 2
+    data["balance"] += value
+    return data
 
-for person in people:
-    add_points(person, 100)
+result = map(lambda person: add_points(person, 100), people)
 
+print(list(result))
 print(people)
