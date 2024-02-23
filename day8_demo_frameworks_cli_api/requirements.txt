@@ -1,2 +1,4 @@
 pysimplegui
 kivy
+rich
+textual
